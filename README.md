@@ -2,7 +2,7 @@
 A Python script that loads your assignments, due or completed, from your Canvas account straight into your Notion dashboard.
 
 ### Acknowledgements
-The original source code belongs to [@dpshade](https://github.com/dpshade). [Link to the original repo](https://github.com/dpshade/canvas-notion-api).
+This extension uses original source code belonging to [@dpshade](https://github.com/dpshade), but features additional customisation. [Link to the original repo](https://github.com/dpshade/canvas-notion-api).
 
 ### Disclaimer
 This extension is specialised for NUS students, especially with how Semesters and Weeks are computed. If you are a non-NUS student, please edit `scripts/date_helpers.py` and `config/schema.py`
