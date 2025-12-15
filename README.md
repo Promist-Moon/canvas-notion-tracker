@@ -22,3 +22,8 @@
 Create a User class with all the necessary tokens and you can now call the functions to populate your Notion database
 
 [Notion website with visuals and more](https://dylan-shade-creations.super.site/canvas-notion-api)
+
+
+Here are some useful documents if you would like to tweak the properties yourself!
+[Canvas Instructure API](https://developerdocs.instructure.com/services/canvas/resources/assignments)
+[Notion Developers API](https://developers.notion.com/reference/intro)

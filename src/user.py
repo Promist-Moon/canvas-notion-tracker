@@ -63,7 +63,7 @@ class User:
                     dueDate={"start": assignment["due_at"]},
                     url=assignment["url"],
                     assignmentName=assignment["name"],
-                    status="To Do",
+                    has_submitted=assignment["has_submitted_submissions"],
                 )
 
     # This function adds all found assignments to the notion database
@@ -79,5 +79,5 @@ class User:
                     dueDate=assignment["due_at"],
                     url=assignment["url"],
                     assignmentName=assignment["name"],
-                    status="To Do",
+                    has_submitted=assignment["has_submitted_submissions"],
                 )

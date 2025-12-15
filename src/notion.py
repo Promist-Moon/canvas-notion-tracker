@@ -65,15 +65,6 @@ class NotionApi:
                         "expression": '(dateBetween(prop("Due Date"), now(), "days") == 0) ? "🟧" : ((dateBetween(prop("Due Date"), now(), "days") < 0) ? "🟥" : "🟩")'
                     }
                 },
-                "Status": {
-                    "select": {
-                        "options": [
-                            {"name": "To Do", "color": "pink"},
-                            {"name": "In Progress", "color": "red"},
-                            {"name": "Completed", "color": "green"},
-                        ]
-                    }
-                },
                 "Assignment": {"title": {}},
                 "Class": {
                     "type": "select",
@@ -105,7 +96,7 @@ class NotionApi:
         id,
         className,
         assignmentName,
-        status,
+        has_submitted=False,
         url=None,
         dueDate=None,
     ):
@@ -119,10 +110,16 @@ class NotionApi:
 
         createUrl = "https://api.notion.com/v1/pages"
 
+        status_name = "Done" if has_submitted else "Not started"
+
         newPageData = {
             "parent": {"database_id": self.database_id},
             "properties": {
-                "Status": {"select": {"name": status, "color": "pink"}},
+                "Status": {
+                    "status": {
+                        "name": status_name,
+                    }
+                },
                 "Assignment": {
                     "type": "title",
                     "title": [
