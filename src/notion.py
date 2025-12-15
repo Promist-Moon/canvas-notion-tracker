@@ -1,6 +1,6 @@
 import requests, json
 from config.schema import NOTION_DB_PROPERTIES
-from scripts.time_helpers import compute_week_from_due, compute_semester_from_due
+from scripts.select_helpers import compute_week_from_due, compute_semester_from_due
 
 class NotionApi:
     def __init__(

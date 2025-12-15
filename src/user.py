@@ -1,7 +1,7 @@
 import json, requests
 from canvas import CanvasApi
 from notion import NotionApi
-from config.time_helpers import date_to_sg_offset_iso
+from scripts.date_helpers import date_to_sg_offset_iso
 
 class User:
     def __init__(
