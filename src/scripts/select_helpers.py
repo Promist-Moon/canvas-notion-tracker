@@ -7,7 +7,7 @@ from config.week_map import WEEK_RANGES_BY_SEMESTER
 TIMEZONE = timezone(timedelta(hours=UTC_OFFSET))
 
 def compute_semester_from_due(due: Union[date, datetime, str]) -> str:
-    if due is None:
+    if due is None or due == "":
         return "N/A"
 
     # parse

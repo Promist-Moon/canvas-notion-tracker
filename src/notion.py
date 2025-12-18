@@ -122,7 +122,7 @@ class NotionApi:
                 "Due Date": {
                     "date": {
                         "start": dueDate,
-                    },
+                    } if dueDate else None,
                 },
                 "URL": {
                     "url": url,
