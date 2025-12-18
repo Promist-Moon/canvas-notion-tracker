@@ -1,6 +1,8 @@
 # Canvas-Notion Assignment Tracker
 A Python script that loads your assignments, due or completed, from your Canvas account straight into your Notion dashboard.
 
+![image](sample-page.png "Sample page")
+
 ### Acknowledgements
 This extension uses original source code belonging to [@dpshade](https://github.com/dpshade), but features additional customisation. [Link to the original repo](https://github.com/dpshade/canvas-notion-api).
 
@@ -33,6 +35,8 @@ This extension is specialised for NUS students, especially with how Semesters an
 
 ## In the code
 Call the desired functions and run `main.py` to execute.
+
+For more detailed instructions, please refer to [this README](https://www.notion.so/Canvas-Notion-Assignment-Tracker-2cd43ffd43be8053a4e0df0a030c348e?source=copy_link)
 
 [Dylan Shade's Notion website with visuals and more](https://dylan-shade-creations.super.site/canvas-notion-api)
 
