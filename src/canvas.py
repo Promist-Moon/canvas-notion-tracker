@@ -36,13 +36,15 @@ class CanvasApi:
             startDate = ""
             ndx = 0
 
-            if course.get("start_at") != None:
-                while course.get("start_at")[ndx] != "T":
-                    startDate += course.get("start_at")[ndx]
-                    ndx += 1
+            if course.get("start_at") == None:
+                continue
 
-                classStartDate = date.fromisoformat(startDate)
-                sixMonthsAgo = date.today() - relativedelta(months=6)
+            while course.get("start_at")[ndx] != "T":
+                startDate += course.get("start_at")[ndx]
+                ndx += 1
+
+            classStartDate = date.fromisoformat(startDate)
+            sixMonthsAgo = date.today() - relativedelta(months=6)
 
             if classStartDate < sixMonthsAgo:
                 continue
