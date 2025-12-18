@@ -9,6 +9,8 @@ This extension uses original source code belonging to [@dpshade](https://github.
 ### Disclaimer
 This extension is specialised for NUS students, especially with how Semesters and Weeks are computed. If you are a non-NUS student, please edit `scripts/date_helpers.py` and `config/schema.py`
 
+For more detailed instructions, please refer to [this README](https://www.notion.so/Canvas-Notion-Assignment-Tracker-2cd43ffd43be8053a4e0df0a030c348e?source=copy_link)
+
 ## How to Setup
 1. Create a `.env` file in the root with the following:
     `CANVAS_API_KEY=
@@ -35,8 +37,6 @@ This extension is specialised for NUS students, especially with how Semesters an
 
 ## In the code
 Call the desired functions and run `main.py` to execute.
-
-For more detailed instructions, please refer to [this README](https://www.notion.so/Canvas-Notion-Assignment-Tracker-2cd43ffd43be8053a4e0df0a030c348e?source=copy_link)
 
 [Dylan Shade's Notion website with visuals and more](https://dylan-shade-creations.super.site/canvas-notion-api)
 
