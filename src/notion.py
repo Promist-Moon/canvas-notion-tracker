@@ -147,6 +147,70 @@ class NotionApi:
         print(res.text)
 
         return res
+    
+    def updateDatabaseItem(
+        self,
+        page_id,
+        className,
+        assignmentName,
+        has_submitted=False,
+        url=None,
+        dueDate=None,
+    ):
+        updateUrl = f"https://api.notion.com/v1/pages/{page_id}"
+
+        status_name = "Done" if has_submitted else "Not started"
+
+        updatePageData = {
+            "properties": {
+                "Status": {
+                    "status": {
+                        "name": status_name,
+                    }
+                },
+                "Assignment": {
+                    "type": "title",
+                    "title": [
+                        {
+                            "text": {
+                                "content": assignmentName,
+                            },
+                        }
+                    ],
+                },
+                "Class": {
+                    "select": {
+                        "name": className,
+                    }
+                },
+                "Due Date": {
+                    "date": {
+                        "start": dueDate,
+                    } if dueDate else None,
+                },
+                "URL": {
+                    "url": url,
+                },
+                "Week": {
+                    "select": {
+                        "name": compute_week_from_due(dueDate),
+                    }
+                },
+                "Semester": {
+                    "select": {
+                        "name": compute_semester_from_due(dueDate),
+                    }
+                },
+            },
+        }
+
+        data = json.dumps(updatePageData)
+
+        res = requests.request("PATCH", updateUrl, headers=self.notionHeaders, data=data)
+
+        print(res.text)
+
+        return res
 
     def parseDatabaseForAssignments(self):
         urls = []

@@ -24,4 +24,4 @@ Stop here to create a status object in database first, with the default settings
 Else, you will get an error message that status property does not exist.
 """
 courses = user.getAllCourses()
-user.enterAssignmentsToNotionDb(courses, "unsubmitted")
+user.enterAssignmentsToNotionDb(courses)

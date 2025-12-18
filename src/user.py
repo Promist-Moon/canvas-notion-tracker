@@ -33,23 +33,22 @@ class User:
         return self.canvasProfile.get_all_courses()
 
     # Enters assignments into given database given (by id), or creates a new database, and fills the page with assignments not already found in the database
-    def enterAssignmentsToNotionDb(self, courseList, timeframe="upcoming"):
+    def enterAssignmentsToNotionDb(self, courseList, timeframe=None):
         if not self.notionProfile.test_if_database_id_exists():
             self.notionProfile = NotionApi(
                 self.notionToken,
                 database_id=self.createDatabase(),
                 schoolAb=self.schoolAb,
             )
-            self.addNewDatabaseItems(courseList, timeframe)
-        else:
-            self.addNewDatabaseItems(courseList, timeframe)
+        self.addNewDatabaseItems(courseList, timeframe)
+        self.updateExistingDatabaseItems(courseList)
 
     # Creates a new Canvas Assignments database in the notionPageId page
     def createDatabase(self, page_id_name="Default"):
         return self.notionProfile.createNewDatabase(self.page_ids[page_id_name])
 
     # This function adds NEW assignments to the database based on whether the assignments URL can be found in the notion database
-    def addNewDatabaseItems(self, courseList, timeframe="upcoming"):
+    def addNewDatabaseItems(self, courseList, timeframe=None):
         self.canvasProfile.set_courses_and_id()
         for course in courseList:
             for assignment in self.canvasProfile.update_assignment_objects(
@@ -71,6 +70,32 @@ class User:
                     assignmentName=assignment["name"],
                     has_submitted=assignment["has_submitted_submissions"],
                 )
+    
+    # This function updates EXISTING assignments in the database based on whether the assignments URL can be found in the notion database
+    def updateExistingDatabaseItems(self, courseList):
+        self.canvasProfile.set_courses_and_id()
+        notionAssignments = self.notionProfile.parseDatabaseForAssignments()
+
+        for course in courseList:
+            courseName = course.name
+            assignmentObjects = self.canvasProfile.get_assignment_objects(courseName)
+
+            for assignment in assignmentObjects:
+                if assignment["url"] in notionAssignments:
+                    due_date = assignment.get("due_at")
+                    dueDate = (
+                        date_to_sg_offset_iso(due_date)
+                        if due_date is not None
+                        else None
+                    )
+
+                    self.notionProfile.updateDatabaseItem(
+                        page_id=notionAssignments[assignment["url"]],
+                        className=courseName,
+                        dueDate=dueDate,
+                        assignmentName=assignment["name"],
+                        has_submitted=assignment["has_submitted_submissions"],
+                    )
 
     # This function adds all found assignments to the notion database
     def rawFillDatabase(self, courseList):
