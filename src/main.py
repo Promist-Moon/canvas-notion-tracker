@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-canvasKey = os.getenv("CANVAS_API_KEY")
+canvasKey = os.getenv("LMS_API_KEY")
 notionToken = os.getenv("NOTION_TOKEN")
 notionPageId = os.getenv("NOTION_PAGE_ID")
-schoolAb = os.getenv("SCHOOL_AB")
+schoolAb = os.getenv("SCHOOL_AB_KR")
 databaseId = os.getenv("DATABASE_ID")
 
 # if you want to use an existing database, uncomment below

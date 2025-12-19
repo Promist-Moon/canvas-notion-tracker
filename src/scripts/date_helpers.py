@@ -34,8 +34,12 @@ def computeSemesterBoundsForAy(ay_start_year: int):
     s1_start = s1_week0
     s1_end = s1_week1 + timedelta(weeks=17) - timedelta(days=1)
 
-    # Semester 2
+    # Winter term
+    wt_start = s1_end + timedelta(days=1)
     s2_week1 = nthWeekdayOfMonth(ay_start_year + 1, 1, MONDAY, 2)
+    wt_end = s2_week1 - timedelta(days=1)
+
+    # Semester 2
     s2_start = s2_week1
     s2_end = s2_week1 + timedelta(weeks=17) - timedelta(days=1)
 
@@ -46,6 +50,7 @@ def computeSemesterBoundsForAy(ay_start_year: int):
 
     return {
         "S1": (s1_start, s1_end),
+        "Winter Term": (wt_start, wt_end),
         "S2": (s2_start, s2_end),
         "Special Term": (st_start, st_end),
     }
@@ -53,15 +58,19 @@ def computeSemesterBoundsForAy(ay_start_year: int):
 def computeSemesterBoundsForUniTerm(matric_year: int):
     return {
         "Y1S1": computeSemesterBoundsForAy(matric_year)["S1"],
+        "Y1 Winter Term": computeSemesterBoundsForAy(matric_year)["Winter Term"],
         "Y1S2": computeSemesterBoundsForAy(matric_year)["S2"],
         "Y1 Special Term": computeSemesterBoundsForAy(matric_year)["Special Term"],
         "Y2S1": computeSemesterBoundsForAy(matric_year + 1)["S1"],
+        "Y2 Winter Term": computeSemesterBoundsForAy(matric_year + 1)["Winter Term"],
         "Y2S2": computeSemesterBoundsForAy(matric_year + 1)["S2"],
         "Y2 Special Term": computeSemesterBoundsForAy(matric_year + 1)["Special Term"],
         "Y3S1": computeSemesterBoundsForAy(matric_year + 2)["S1"],
+        "Y3 Winter Term": computeSemesterBoundsForAy(matric_year + 2)["Winter Term"],
         "Y3S2": computeSemesterBoundsForAy(matric_year + 2)["S2"],
         "Y3 Special Term": computeSemesterBoundsForAy(matric_year + 2)["Special Term"],
         "Y4S1": computeSemesterBoundsForAy(matric_year + 3)["S1"],
+        "Y4 Winter Term": computeSemesterBoundsForAy(matric_year + 3)["Winter Term"],
         "Y4S2": computeSemesterBoundsForAy(matric_year + 3)["S2"],
         "Y4 Special Term": computeSemesterBoundsForAy(matric_year + 3)["Special Term"],
     }

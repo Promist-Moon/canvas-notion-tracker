@@ -44,6 +44,8 @@ def compute_week_from_due(due: Union[date, datetime, str]) -> str:
         return "N/A"
     elif "Special Term" in semester:
         return "Special Term"
+    elif "Winter Term" in semester:
+        return "Winter Term"
 
     WEEK_RANGES = WEEK_RANGES_BY_SEMESTER.get(semester, [])
 
